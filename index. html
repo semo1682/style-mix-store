@@ -1,418 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Eslam Mesalam | Front-End Developer</title>
-  <meta name="description" content="Eslam Mesalam Front-End Developer Portfolio" />
-  <style>
-    :root{
-      --bg:#07101d;
-      --bg-2:#0b1830;
-      --surface:rgba(255,255,255,0.06);
-      --surface-2:rgba(255,255,255,0.04);
-      --border:rgba(255,255,255,0.10);
-      --text:#ffffff;
-      --muted:#b8c4dc;
-      --blue:#6ea8ff;
-      --purple:#8f6bff;
-      --cyan:#65d6ff;
-      --shadow:0 20px 60px rgba(0,0,0,.35);
-      --radius:26px;
-      --transition:.35s ease;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Mix | Modern Premium Fashion Store</title>
+    <meta name="description" content="Shop premium minimalist fashion at Style Mix. Modern clothing designed for everyday elegance.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
 
-    *{
-      margin:0;
-      padding:0;
-      box-sizing:border-box;
-      scroll-behavior:smooth;
-    }
+    <header class="navbar">
+        <div class="logo">STYLE MIX</div>
 
-    body{
-      font-family:Arial, Helvetica, sans-serif;
-      color:var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(110,168,255,.18), transparent 25%),
-        radial-gradient(circle at bottom right, rgba(143,107,255,.16), transparent 25%),
-        linear-gradient(180deg, var(--bg) 0%, var(--bg-2) 100%);
-      overflow-x:hidden;
-    }
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#shop">Collection</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
 
-    a{
-      text-decoration:none;
-      color:inherit;
-    }
+        <div class="nav-icons">
+            <button class="cart-btn" onclick="toggleCart()">
+                Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
 
-    img{
-      display:block;
-      max-width:100%;
-    }
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>NEW ERA OF MINIMALISM</h1>
+            <p>Elevate your everyday wardrobe with our latest premium collection.</p>
+            <a href="#shop" class="btn-primary">Explore Collection</a>
+        </div>
+    </section>
 
-    .container{
-      width:min(1150px, 92%);
-      margin:auto;
-    }
+    <section id="shop" class="shop-section">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="product-grid" id="product-grid"></div>
+    </section>
 
-    .section{
-      padding:100px 0;
-      position:relative;
-    }
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2 class="section-title">About Style Mix</h2>
+            <p>
+                Style Mix is a modern fashion brand focused on minimalist design,
+                premium quality, and timeless style. We create clean and elegant
+                pieces designed for everyday confidence and comfort.
+            </p>
+        </div>
+    </section>
 
-    .section-title{
-      font-size:clamp(32px, 5vw, 48px);
-      text-align:center;
-      margin-bottom:14px;
-      letter-spacing:.3px;
-    }
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="contact-text">We would love to hear from you.</p>
 
-    .section-subtitle{
-      max-width:760px;
-      margin:0 auto 48px;
-      text-align:center;
-      color:var(--muted);
-      font-size:16px;
-      line-height:1.9;
-    }
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
 
-    .gradient-text{
-      background:linear-gradient(135deg,#ffffff,#9dc4ff,#c6b2ff);
-      -webkit-background-clip:text;
-      -webkit-text-fill-color:transparent;
-      background-clip:text;
-      color:transparent;
-    }
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
 
-    .navbar{
-      position:sticky;
-      top:0;
-      z-index:1000;
-      background:rgba(7,16,29,.82);
-      backdrop-filter:blur(16px);
-      border-bottom:1px solid var(--border);
-    }
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-btn" onclick="toggleCart()">&times;</button>
+        </div>
 
-    .nav-wrap{
-      display:flex;
-      justify-content:space-between;
-      align-items:center;
-      gap:20px;
-      padding:18px 0;
-    }
+        <div class="cart-items" id="cart-items"></div>
 
-    .logo{
-      font-size:30px;
-      font-weight:800;
-      letter-spacing:.5px;
-    }
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn-primary w-100" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
 
-    .logo span{
-      color:var(--blue);
-    }
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>STYLE MIX</h3>
+                <p>Redefining modern luxury.</p>
+            </div>
 
-    .nav-links{
-      display:flex;
-      gap:26px;
-      align-items:center;
-      flex-wrap:wrap;
-    }
+            <div class="footer-col">
+                <h4>Customer Care</h4>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">Size Guide</a>
+                <a href="#">Contact Us</a>
+            </div>
 
-    .nav-links a{
-      color:#dce7fb;
-      font-size:15px;
-      transition:var(--transition);
-      position:relative;
-    }
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <div class="newsletter">
+                    <input type="email" placeholder="Enter your email">
+                    <button class="btn-secondary">Subscribe</button>
+                </div>
+            </div>
+        </div>
 
-    .nav-links a::after{
-      content:"";
-      position:absolute;
-      left:0;
-      bottom:-6px;
-      width:0;
-      height:2px;
-      background:linear-gradient(135deg,var(--blue),var(--purple));
-      transition:var(--transition);
-    }
+        <div class="footer-bottom">
+            <p>&copy; 2024 STYLE MIX. All rights reserved.</p>
+        </div>
+    </footer>
 
-    .nav-links a:hover::after{
-      width:100%;
-    }
-
-    .nav-btn{
-      padding:12px 18px;
-      border-radius:14px;
-      background:linear-gradient(135deg,var(--blue),var(--purple));
-      font-weight:700;
-      box-shadow:0 12px 30px rgba(110,168,255,.18);
-    }
-
-    .hero{
-      min-height:100vh;
-      display:flex;
-      align-items:center;
-      padding:70px 0 40px;
-      position:relative;
-    }
-
-    .hero::before{
-      content:"";
-      position:absolute;
-      width:420px;
-      height:420px;
-      right:-120px;
-      top:80px;
-      background:radial-gradient(circle, rgba(101,214,255,.18), transparent 60%);
-      pointer-events:none;
-      filter:blur(10px);
-    }
-
-    .hero-grid{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:34px;
-      align-items:center;
-    }
-
-    .badge{
-      display:inline-flex;
-      align-items:center;
-      gap:10px;
-      padding:12px 18px;
-      border-radius:999px;
-      background:rgba(255,255,255,.05);
-      border:1px solid var(--border);
-      color:#eef4ff;
-      font-size:14px;
-      margin-bottom:22px;
-      box-shadow:var(--shadow);
-    }
-
-    .badge-dot{
-      width:10px;
-      height:10px;
-      border-radius:50%;
-      background:linear-gradient(135deg,var(--cyan),var(--blue));
-      box-shadow:0 0 12px rgba(101,214,255,.9);
-    }
-
-    .hero-text h1{
-      font-size:clamp(42px, 7vw, 78px);
-      line-height:1.02;
-      margin-bottom:14px;
-      letter-spacing:-1px;
-    }
-
-    .hero-text h2{
-      font-size:clamp(22px, 3.8vw, 34px);
-      color:#bdd4ff;
-      line-height:1.35;
-      margin-bottom:18px;
-      font-weight:700;
-    }
-
-    .hero-text p{
-      color:var(--muted);
-      font-size:18px;
-      line-height:1.95;
-      max-width:650px;
-      margin-bottom:28px;
-    }
-
-    .hero-actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-bottom:28px;
-    }
-
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      min-width:170px;
-      padding:16px 24px;
-      border-radius:16px;
-      font-weight:700;
-      transition:var(--transition);
-      border:1px solid transparent;
-    }
-
-    .btn-primary{
-      background:linear-gradient(135deg,var(--blue),var(--purple));
-      box-shadow:0 14px 35px rgba(110,168,255,.22);
-    }
-
-    .btn-secondary{
-      background:rgba(255,255,255,.04);
-      border-color:var(--border);
-    }
-
-    .btn:hover{
-      transform:translateY(-5px);
-    }
-
-    .hero-stats{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:16px;
-    }
-
-    .stat{
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:22px;
-      padding:22px 18px;
-      text-align:center;
-      box-shadow:var(--shadow);
-      transition:var(--transition);
-    }
-
-    .stat:hover{
-      transform:translateY(-6px);
-    }
-
-    .stat h3{
-      font-size:30px;
-      margin-bottom:6px;
-    }
-
-    .stat p{
-      font-size:14px;
-      color:var(--muted);
-      line-height:1.7;
-    }
-
-    .hero-card{
-      background:linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04));
-      border:1px solid var(--border);
-      border-radius:30px;
-      padding:18px;
-      box-shadow:var(--shadow);
-      position:relative;
-      overflow:hidden;
-    }
-
-    .hero-card::before{
-      content:"";
-      position:absolute;
-      inset:auto auto -60px -60px;
-      width:180px;
-      height:180px;
-      border-radius:50%;
-      background:radial-gradient(circle, rgba(110,168,255,.20), transparent 70%);
-      filter:blur(8px);
-    }
-
-    .hero-image{
-      border-radius:24px;
-      overflow:hidden;
-      background:#111827;
-      border:1px solid rgba(255,255,255,.08);
-    }
-
-    .hero-image img{
-      width:100%;
-      height:560px;
-      object-fit:cover;
-      object-position:center;
-    }
-
-    .profile-fallback{
-      display:none;
-      width:100%;
-      height:560px;
-      align-items:center;
-      justify-content:center;
-      flex-direction:column;
-      gap:14px;
-      background:linear-gradient(135deg, rgba(110,168,255,.12), rgba(143,107,255,.12));
-      padding:20px;
-      text-align:center;
-    }
-
-    .fallback-circle{
-      width:110px;
-      height:110px;
-      border-radius:50%;
-      display:grid;
-      place-items:center;
-      font-size:42px;
-      font-weight:800;
-      background:rgba(255,255,255,.08);
-      border:1px solid rgba(255,255,255,.12);
-    }
-
-    .mini-panel{
-      display:grid;
-      grid-template-columns:repeat(3,1fr);
-      gap:12px;
-      margin-top:16px;
-    }
-
-    .mini-box{
-      background:rgba(255,255,255,.04);
-      border:1px solid var(--border);
-      border-radius:18px;
-      padding:16px;
-      text-align:center;
-      transition:var(--transition);
-    }
-
-    .mini-box:hover{
-      transform:translateY(-4px);
-    }
-
-    .mini-box strong{
-      display:block;
-      margin-bottom:4px;
-      font-size:17px;
-    }
-
-    .mini-box span{
-      color:var(--muted);
-      font-size:13px;
-      line-height:1.6;
-    }
-
-    .about-grid{
-      display:grid;
-      grid-template-columns:1.05fr .95fr;
-      gap:24px;
-      align-items:stretch;
-    }
-
-    .card{
-      background:var(--surface);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:28px;
-      box-shadow:var(--shadow);
-    }
-
-    .about-text{
-      color:var(--muted);
-      font-size:17px;
-      line-height:2;
-    }
-
-    .highlights{
-      display:grid;
-      gap:16px;
-    }
-
-    .highlight{
-      background:var(--surface-2);
-      border:1px solid var(--border);
-      border-radius:20px;
-      padding:20px;
-      transition:var(--transition);
-    }
-
-    .highlight:hover{
-      transform:translateY(-5px);
-    }
-
+    <script src="script.js"></script>
+</body>
+</html>
     .highlight h3{
       font-size:20px;
       margin-bottom:8px;
