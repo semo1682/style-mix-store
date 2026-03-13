@@ -122,4 +122,17 @@ function checkout() {
     } else {
         alert("Proceeding to secure checkout...");
     }
+        }        `).join("");
+    }
+
+    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+    cartTotal.innerText = `$${total.toFixed(2)}`;
+}
+
+function checkout() {
+    if (cart.length === 0) {
+        alert("Your cart is empty!");
+    } else {
+        alert("Proceeding to secure checkout...");
+    }
 }
