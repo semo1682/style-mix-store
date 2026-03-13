@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Style Mix | Modern Premium Fashion Store</title>
+    <meta name="description" content="Shop premium minimalist fashion at Style Mix. Modern clothing designed for everyday elegance.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="logo">STYLE MIX</div>
+
+        <nav class="nav-links">
+            <a href="#home">Home</a>
+            <a href="#shop">Collection</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-icons">
+            <button class="cart-btn" onclick="toggleCart()">
+                Cart (<span id="cart-count">0</span>)
+            </button>
+        </div>
+    </header>
+
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>NEW ERA OF MINIMALISM</h1>
+            <p>Elevate your everyday wardrobe with our latest premium collection.</p>
+            <a href="#shop" class="btn-primary">Explore Collection</a>
+        </div>
+    </section>
+
+    <section id="shop" class="shop-section">
+        <h2 class="section-title">Trending Now</h2>
+        <div class="product-grid" id="product-grid"></div>
+    </section>
+
+    <section id="about" class="about-section">
+        <div class="about-container">
+            <h2 class="section-title">About Style Mix</h2>
+            <p>
+                Style Mix is a modern fashion brand focused on minimalist design,
+                premium quality, and timeless style. We create clean and elegant
+                pieces designed for everyday confidence and comfort.
+            </p>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section">
+        <div class="contact-container">
+            <h2 class="section-title">Contact Us</h2>
+            <p class="contact-text">We would love to hear from you.</p>
+
+            <form class="contact-form">
+                <input type="text" placeholder="Your Name" required>
+                <input type="email" placeholder="Your Email" required>
+                <textarea rows="5" placeholder="Your Message" required></textarea>
+                <button type="submit" class="btn-primary">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h2>Your Cart</h2>
+            <button class="close-btn" onclick="toggleCart()">&times;</button>
+        </div>
+
+        <div class="cart-items" id="cart-items"></div>
+
+        <div class="cart-footer">
+            <div class="cart-total">
+                <span>Total:</span>
+                <span id="cart-total-price">$0.00</span>
+            </div>
+            <button class="btn-primary w-100" onclick="checkout()">Proceed to Checkout</button>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <h3>STYLE MIX</h3>
+                <p>Redefining modern luxury.</p>
+            </div>
+
+            <div class="footer-col">
+                <h4>Customer Care</h4>
+                <a href="#">Shipping & Returns</a>
+                <a href="#">Size Guide</a>
+                <a href="#">Contact Us</a>
+            </div>
+
+            <div class="footer-col">
+                <h4>Newsletter</h4>
+                <div class="newsletter">
+                    <input type="email" placeholder="Enter your email">
+                    <button class="btn-secondary">Subscribe</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>&copy; 2024 STYLE MIX. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
